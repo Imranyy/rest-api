@@ -22,11 +22,12 @@
 <!--create react-->
 <script type="text/babel">
     class Ninjas extends React.Component {
-        getInitialState=()=>{
-            return(
-                {ninjas:[]}
-            )
-        }
+        constructor(props) {
+    super(props);
+    this.state = {
+      ninjas:[]
+    }
+  }
 
         render=()=>{
             const ninjas=this.state.ninjas;
@@ -47,7 +48,7 @@
                         <input type="text" ref="lat" required placeholder="latitude"/>
                         <label>Enter your longitude:</label>
                         <input type="text" ref="lng" required placeholder="longitude"/>
-                        <input typ="submit" value="Find ninjas"/>
+                        <input type="submit" value="Find ninjas"/>
                     </form>    
                     <ul>{ninjas}</ul>
                 </div>
@@ -61,7 +62,7 @@
             fetch('/api/ninjas?lng='+lng+'&lat='+lat).then((data)=>{
                 return data.json();
             }).then((json)=>{
-                this.setstate({
+                this.setState({
                     ninja:json
                 });
             });
